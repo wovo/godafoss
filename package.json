@@ -6,5 +6,8 @@
         "type": "git",
         "url": "https://github.com/wovo/godafoss-code"
     },
-    "version": "0.1"
+    "version": "0.1",
+    "urls": [
+        [ "lib/godafoss", "github:wovo/godafoss/lib/godafoss" ],
+    ],
 }
