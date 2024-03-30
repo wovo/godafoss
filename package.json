@@ -8,6 +8,6 @@
     },
     "version": "0.1",
     "urls": [
-        [ "lib/godafoss", "github:wovo/godafoss/lib/godafoss/__init__.mpy" ],
+        [ "lib/godafoss", "github:wovo/godafoss/lib/godafoss/__init__.mpy" ]
     ]
 }
