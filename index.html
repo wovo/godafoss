@@ -47,13 +47,14 @@
             
   <section id="godafoss-a-micropython-library">
 <h1>Godafoss - a MicroPython library<a class="headerlink" href="#godafoss-a-micropython-library" title="Permalink to this heading">¶</a></h1>
-<img alt="./godafoss-waterfalls_html.png" src="./godafoss-waterfalls_html.png" />
+<img alt="_images/godafoss-waterfalls_html.png" src="_images/godafoss-waterfalls_html.png" />
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">¶</a></h2>
-<p>The Godafoss library is a library for use with MicroPython.
+<p>Godafossis a library for use with MicroPython,
+the Python port for micro-controllers.
 It provides a consistent interface to the hardware of the target chip or
 module itself, and to various peripheral chips and modules.
-The emphasis is on portability and abstraction,
+The emphasis is on easde of use, portability and abstraction,
 rather than speed or providing all features of all peripherals.</p>
 </section>
 <section id="name">
@@ -65,57 +66,46 @@ his support for Christianity, thus avoiding a civil war.</p>
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
-<p>From the host, using mpremote from the host (PC/laptop) command line
-(my MicroPython devices are always on com42):</p>
+<p>The preferred option is to use a MicroPython image with the lbrary built in as
+frozen code. This yields the shortest startup time and the lowest RAM use.
+Images for selected targets are available, built from recent (1.22) MicroPython
+sources:
+<a class="reference external" href="./images/rp2040.uf2">rp2040</a>,
+<a class="reference external" href="./images/rp2040w.uf2">rp2040w</a> (with WiFi),
+<a class="reference external" href="./images/esp8266.bin">esp8266</a>,
+<a class="reference external" href="./images/esp32.bin">esp32</a>,
+<a class="reference external" href="./images/esp32s3.bin">esp32s3</a> (single CPU),
+<a class="reference external" href="./images/esp32c3.bin">esp32c3</a> (RISC V),
+<a class="reference external" href="./images/teensy41.hex">teensy 4.1</a>
+.</p>
+<p>Alternatively, the compiled form of the library (.mpy files)
+can be installed using mpremote on the host
+(PC/laptop) command line (my MicroPython devices are always on com42):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">mpremote</span> <span class="n">connect</span> <span class="n">com42</span> <span class="n">mip</span> <span class="n">install</span> <span class="n">github</span><span class="p">:</span><span class="n">wovo</span><span class="o">/</span><span class="n">godafoss</span>
 </pre></div>
 </div>
-<p>If you prefer to install the library manually:</p>
+<p>Or if you prefer to install manually:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>clone the
-Godafoss repository <a class="reference external" href="http://www.github.com/wovo/godafoss">http://www.github.com/wovo/godafoss</a></p></li>
-<li><p>copy the lib directory to the target MicroPython device,
+<li><p>clone <a class="reference external" href="http://www.github.com/wovo/godafoss-code">http://www.github.com/wovo/godafoss-code</a></p></li>
+<li><p>copy the godafoss directory to the target MicroPython device,
 for instance using the file download funtion in Thonny</p></li>
 </ul>
 </div></blockquote>
-<p>These two methods install the pre-compiled form of the
-library (.mpy files).
-To use the library in its source form
+<p>To use the library in its source form
 (for debugging or extending the library):</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>clone the
-Godafoss repository <a class="reference external" href="http://www.github.com/wovo/godafoss">http://www.github.com/wovo/godafoss</a></p></li>
-<li><p>copy the godafoss directory to the root or lib directory
-on the target MicroPython device
-for instance using the file download funtion in Thonny</p></li>
+Godafoss code repository <a class="reference external" href="http://www.github.com/wovo/godafoss-code">http://www.github.com/wovo/godafoss-code</a></p></li>
+<li><p>copy the godafoss directory to the root
+of the target MicroPython device,
+for instance using the file download function in Thonny</p></li>
 </ul>
 </div></blockquote>
 <p>For working on the library a fast target with ample RAM is recommended.
-My preferred target this is currently (2025) the Teensy 4.1
+My preferred target this is currently (2024) the Teensy 4.1
 (a pity its MicroPython port doesn’t have the nexopixel driver built in).</p>
-<p>If you build your own Micropython image you can copy the
-godafoss source directory to the modules directory
-of your target and do a build. For a few selected targets
-(rp2040, esp32) this has been automated using docker:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>install (nd on windows: start) docker</p></li>
-<li><p>clone the
-Godafoss repository <a class="reference external" href="http://www.github.com/wovo/godafoss">http://www.github.com/wovo/godafoss</a></p></li>
-<li><p>in a command line windows in the root of the clone
-give the command:</p></li>
-</ul>
-<p>make/build &lt;target&gt;</p>
-<ul class="simple">
-<li><p>the MicroPython image with godafoss built-in can now be
-found in the tempdir/…</p></li>
-<li><p>for rp2040, the image can be downloaded using Thonny</p></li>
-<li><p>assuming</p></li>
-</ul>
-<p>make/download &lt;target&gt; com42</p>
-</div></blockquote>
 </section>
 <section id="use">
 <h2>Use<a class="headerlink" href="#use" title="Permalink to this heading">¶</a></h2>
@@ -288,7 +278,7 @@ font tool</p>
 <section id="resource-use">
 <h2>Resource use<a class="headerlink" href="#resource-use" title="Permalink to this heading">¶</a></h2>
 <p>On most MicroPython targets, RAM is a scarce.
-To make the most of the available RA&lt; the library uses on-demand loading:
+To make the most of the available RAM the library uses on-demand loading:
 most things within the library, and most attributes of its classes,
 are loaded only when used.
 This saves overall RAM, but at the cost of some overhead in loading time
@@ -369,7 +359,7 @@ the source version takes around 10 times more time.)</p>
 </table>
 <p>The ESP8266 and Micro:bit can run MicroPython, but the amount of RAM
 on these platforms is too small to use Godafoss.</p>
-<p>These modern ‘micro-controllers’ use an external Flash chip to store
+<p>Most modern ‘micro-controllers’ use an external Flash chip to store
 the application code (in this case the MicroPython system),
 but load it into RAM for execution.
 This explains the large gap between the total target RAM,
@@ -432,62 +422,186 @@ the library avoids the use of floating point arithmetic.</p>
 <section id="library-content">
 <h2>Library content<a class="headerlink" href="#library-content" title="Permalink to this heading">¶</a></h2>
 </section>
-<span class="target" id="module-godafoss"></span><dl class="py class">
+<span class="target" id="module-godafoss"></span><dl class="py function">
+<dt class="sig sig-object py" id="godafoss.Pin">
+<span class="sig-name descname"><span class="pre">Pin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.Pin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.SX127x">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SX127x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'coding_rate':</span> <span class="pre">5,</span> <span class="pre">'enable_CRC':</span> <span class="pre">False,</span> <span class="pre">'frequency':</span> <span class="pre">868000000.0,</span> <span class="pre">'implicit_header':</span> <span class="pre">False,</span> <span class="pre">'invert_IQ':</span> <span class="pre">False,</span> <span class="pre">'preamble_length':</span> <span class="pre">8,</span> <span class="pre">'signal_bandwidth':</span> <span class="pre">125000.0,</span> <span class="pre">'spreading_factor':</span> <span class="pre">8,</span> <span class="pre">'sync_word':</span> <span class="pre">18,</span> <span class="pre">'tx_power_level':</span> <span class="pre">2}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.begin_packet">
+<span class="sig-name descname"><span class="pre">begin_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implicit_header_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.begin_packet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.blink_led">
+<span class="sig-name descname"><span class="pre">blink_led</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">times</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off_seconds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.blink_led" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.SX127x.default_parameters">
+<span class="sig-name descname"><span class="pre">default_parameters</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'coding_rate':</span> <span class="pre">5,</span> <span class="pre">'enable_CRC':</span> <span class="pre">False,</span> <span class="pre">'frequency':</span> <span class="pre">868000000.0,</span> <span class="pre">'implicit_header':</span> <span class="pre">False,</span> <span class="pre">'invert_IQ':</span> <span class="pre">False,</span> <span class="pre">'preamble_length':</span> <span class="pre">8,</span> <span class="pre">'signal_bandwidth':</span> <span class="pre">125000.0,</span> <span class="pre">'spreading_factor':</span> <span class="pre">8,</span> <span class="pre">'sync_word':</span> <span class="pre">18,</span> <span class="pre">'tx_power_level':</span> <span class="pre">2}</span></em><a class="headerlink" href="#godafoss.SX127x.default_parameters" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.dump_registers">
+<span class="sig-name descname"><span class="pre">dump_registers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.dump_registers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.enable_CRC">
+<span class="sig-name descname"><span class="pre">enable_CRC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_CRC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.enable_CRC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.end_packet">
+<span class="sig-name descname"><span class="pre">end_packet</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.end_packet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.get_irq_flags">
+<span class="sig-name descname"><span class="pre">get_irq_flags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.get_irq_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.handle_on_receive">
+<span class="sig-name descname"><span class="pre">handle_on_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.handle_on_receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.implicit_header_mode">
+<span class="sig-name descname"><span class="pre">implicit_header_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implicit_header_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.implicit_header_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.invert_IQ">
+<span class="sig-name descname"><span class="pre">invert_IQ</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">invert_IQ</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.invert_IQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.on_receive">
+<span class="sig-name descname"><span class="pre">on_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.on_receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.packet_rssi">
+<span class="sig-name descname"><span class="pre">packet_rssi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.packet_rssi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.packet_snr">
+<span class="sig-name descname"><span class="pre">packet_snr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.packet_snr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.println">
+<span class="sig-name descname"><span class="pre">println</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implicit_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.println" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.read_payload">
+<span class="sig-name descname"><span class="pre">read_payload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.read_payload" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.read_register">
+<span class="sig-name descname"><span class="pre">read_register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">byteorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'big'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.read_register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.received_packet">
+<span class="sig-name descname"><span class="pre">received_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.received_packet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_channel">
+<span class="sig-name descname"><span class="pre">set_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_coding_rate">
+<span class="sig-name descname"><span class="pre">set_coding_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">denominator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_coding_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_frequency">
+<span class="sig-name descname"><span class="pre">set_frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_frequency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_lock">
+<span class="sig-name descname"><span class="pre">set_lock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lock</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_lock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_preamble_length">
+<span class="sig-name descname"><span class="pre">set_preamble_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_preamble_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_signal_bandwidth">
+<span class="sig-name descname"><span class="pre">set_signal_bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sbw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_signal_bandwidth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_spreading_factor">
+<span class="sig-name descname"><span class="pre">set_spreading_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_spreading_factor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_sync_word">
+<span class="sig-name descname"><span class="pre">set_sync_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_sync_word" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.set_tx_power">
+<span class="sig-name descname"><span class="pre">set_tx_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputPin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.set_tx_power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.sleep">
+<span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.sleep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.standby">
+<span class="sig-name descname"><span class="pre">standby</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.standby" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.transfer">
+<span class="sig-name descname"><span class="pre">transfer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.transfer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.SX127x.write_register">
+<span class="sig-name descname"><span class="pre">write_register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.SX127x.write_register" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.adc">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">adc</span></span><a class="headerlink" href="#godafoss.adc" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>analog input</p>
 <p>An adc reads a voltage level and returns it
 as a fraction of the full scale.</p>
+<p>-$-macro_insert invertible</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># reada 10-bit adc with an input voltage of 25% of the full scale</span>
-<span class="n">some_adc</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">fraction</span><span class="p">(</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">1024</span> <span class="p">)</span>
-
-<span class="c1"># read the same adc value, but now on a scale of 0-5V</span>
-<span class="n">some_adc</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">scaled</span><span class="p">(</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mf">1.25</span>
-</pre></div>
-</div>
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.adc.inverted">
-<span class="sig-name descname"><span class="pre">inverted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.adc" title="godafoss.adc"><span class="pre">adc</span></a></span></span><a class="headerlink" href="#godafoss.adc.inverted" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>the inverse of the adc</p>
-</div></blockquote>
-<dl class="simple">
-<dt>#=&gt;</dt><dd><dl class="field-list simple">
-<dt class="field-odd">result</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#godafoss.adc" title="godafoss.adc"><code class="xref py py-class docutils literal notranslate"><span class="pre">adc</span></code></a>
-adc that returns the complement of what the
-original adc would read</p>
-</dd>
-</dl>
-</dd>
-<dt>#=&gt;</dt><dd><p>This function returns an adc that on read() returns
-the complementof what the original adc would have read.</p>
-</dd>
-<dt>#=&gt;</dt><dd><p>When the original adc would for example read 10/1023,
-the inverted adc reads 1013/1023.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.adc.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.fraction" title="godafoss.fraction"><span class="pre">fraction</span></a></span></span><a class="headerlink" href="#godafoss.adc.read" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>the adc value as a fraction</p>
-</div></blockquote>
-<dl class="simple">
-<dt>#=&gt;</dt><dd><dl class="field-list simple">
-<dt class="field-odd">result</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#godafoss.fraction" title="godafoss.fraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">fraction</span></code></a>
-adc value as a fraction of the full scale</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <HR><dl class="py function">
@@ -564,13 +678,16 @@ unsigned int value, with (only) the lower n_bits bits 1</p>
 <p>This function returns the integer value,
 of which the lowest n_ones bits
 are 1 (set), the other (higher) bits are 0 (clear).</p>
-<p>examples:</p>
+<p>examples</p>
 </dd></dl>
 
 <HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.benchmark">
 <span class="sig-name descname"><span class="pre">benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.benchmark" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>decorator for benchmarking</p>
+<p>This function decorator will report the time spent (in microseconds)
+and memory claimed (in bytes) each time the decorated function runs.</p>
+</dd></dl>
 
 <HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.blink">
@@ -724,6 +841,94 @@ The names in the table below are available as attributes.</p>
 </dd></dl>
 
 <HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.board_lilygo_ttgo_lora32_v10">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">board_lilygo_ttgo_lora32_v10</span></span><a class="headerlink" href="#godafoss.board_lilygo_ttgo_lora32_v10" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p><a class="reference external" href="https://www.lilygo.cc/products/lora32-v1-0">lilygo_ttgo_lora32_v10</a> board</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>uC</p></td>
+<td><p>ESP32-D0WDQ6, 4Mb FLASH</p></td>
+</tr>
+<tr class="row-even"><td><p>WiFi</p></td>
+<td><p>ESP32, onboard antenna</p></td>
+</tr>
+<tr class="row-odd"><td><p>LoRa</p></td>
+<td><p>SX1276, UPEX antenna connector</p></td>
+</tr>
+<tr class="row-even"><td><p>OLED</p></td>
+<td><p>SSD1306 128*64 0.96”</p></td>
+</tr>
+<tr class="row-odd"><td><p>USB</p></td>
+<td><p>micro, CH910X</p></td>
+</tr>
+<tr class="row-even"><td><p>LiPo</p></td>
+<td><p>TP4054, 2 pin molex</p></td>
+</tr>
+</tbody>
+</table>
+<p>This is an ESP32 board with an SX1276 Lora chip,
+128 * 64 monochrome OLED, boot and reset buttons, and a single blue LED.
+It has micro USB connector with a CH910X USB-to-serial converter.
+The names in the table below are available as attributes.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 93%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Pin</p></td>
+<td><p>name</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>led</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>oled_i2c_sda</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>oled_i2c_scl</p></td>
+</tr>
+<tr class="row-odd"><td><p>27</p></td>
+<td><p>lora_spi_mosi</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>lora_spi_miso</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>lora_spi_sclk</p></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>lora_spi_cs</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>lora_spi_rst</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.board_lilygo_ttgo_lora32_v10.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.board_lilygo_ttgo_lora32_v10.display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.board_lilygo_ttgo_lora32_v10.oled_i2c">
+<span class="sig-name descname"><span class="pre">oled_i2c</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.board_lilygo_ttgo_lora32_v10.oled_i2c" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.board_lilygo_ttgo_lora32_v10.spi">
+<span class="sig-name descname"><span class="pre">spi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">baudrate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">polarity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.board_lilygo_ttgo_lora32_v10.spi" title="Permalink to this definition">¶</a></dt>
+<dd><p>the (hard) SPI bus</p>
+</dd></dl>
+
+</dd></dl>
+
+<HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.board_lilygo_ttgo_t_display">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">board_lilygo_ttgo_t_display</span></span><a class="headerlink" href="#godafoss.board_lilygo_ttgo_t_display" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -747,7 +952,7 @@ The names in the table below are available as attributes.</p>
 </tbody>
 </table>
 <p>This is an ESP32 board with a 135 x 240 SPI color LCD,
-and two input buttons beside the USB connector,
+two input buttons beside the USB connector,
 and a reset button at the side of the board.
 The names in the table below are available as attributes.</p>
 <table class="docutils align-default">
@@ -1668,7 +1873,7 @@ the bytes representation of the value</p>
 </dl>
 <p>This function returns the int value as n_byte bytes,
 least significant byte first (little endian).</p>
-<p>examples:</p>
+<p>examples</p>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -1792,11 +1997,6 @@ be effectuated only when the flush() method is called.</p>
 <dd></dd></dl>
 
 </dd></dl>
-
-<HR><dl class="py function">
-<dt class="sig sig-object py" id="godafoss.canvas_demo">
-<span class="sig-name descname"><span class="pre">canvas_demo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#godafoss.canvas" title="godafoss.canvas"><span class="pre">canvas</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.canvas_demo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.canvas_demo_blink">
@@ -1935,11 +2135,7 @@ either x, or the nearest value in the range [low..high]</p>
 </dd>
 </dl>
 <p>This function returns max( low, min( x, high ) ).</p>
-<p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clamp</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">4</span>
-<span class="n">clamp</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">6</span>
-</pre></div>
-</div>
+<p>examples</p>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -1972,21 +2168,7 @@ attributes.</p>
 or divided by an integer value.</p>
 <p>Some common colors are available as attributes of the colors class.</p>
 <p>Values (objects) of this class are immutable.</p>
-<p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span><span class="o">.</span><span class="n">red</span> <span class="o">-&gt;</span> <span class="mi">1</span>
-<span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span><span class="o">.</span><span class="n">green</span> <span class="o">-&gt;</span> <span class="mi">2</span>
-<span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span><span class="o">.</span><span class="n">blue</span> <span class="o">-&gt;</span> <span class="mi">3</span>
-<span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span><span class="o">.</span><span class="n">rgb</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
-<span class="n">color</span><span class="p">(</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">300</span> <span class="p">)</span><span class="o">.</span><span class="n">rgb</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span>
-
-<span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">+</span> <span class="n">color</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">color</span><span class="p">(</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">33</span> <span class="p">)</span>
-<span class="n">color</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span> <span class="p">)</span> <span class="o">-</span> <span class="n">color</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">color</span><span class="p">(</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">27</span> <span class="p">)</span>
-<span class="mi">10</span> <span class="o">*</span> <span class="n">color</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">color</span><span class="p">(</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">255</span> <span class="p">)</span>
-<span class="n">color</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span> <span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">-&gt;</span> <span class="n">color</span><span class="p">(</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">)</span>
-
-<span class="nb">str</span><span class="p">(</span> <span class="n">color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;(1,2,3)&quot;</span>
-</pre></div>
-</div>
+<p>examples</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="godafoss.color.inverted">
 <span class="sig-name descname"><span class="pre">inverted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.color" title="godafoss.color"><span class="pre">color</span></a></span></span><a class="headerlink" href="#godafoss.color.inverted" title="Permalink to this definition">¶</a></dt>
@@ -1994,11 +2176,6 @@ or divided by an integer value.</p>
 <p>A color can be negated, which yields the complimentary
 <a class="reference internal" href="#godafoss.color" title="godafoss.color"><code class="xref py py-class docutils literal notranslate"><span class="pre">color</span></code></a>.</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span> <span class="p">)</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">color</span><span class="p">(</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">243</span> <span class="p">)</span>
-<span class="o">-</span> <span class="n">colors</span><span class="o">.</span><span class="n">white</span> <span class="o">-&gt;</span> <span class="n">colors</span><span class="o">.</span><span class="n">black</span>
-<span class="n">invert</span> <span class="o">@</span>  <span class="n">colors</span><span class="o">.</span><span class="n">cyan</span> <span class="o">-&gt;</span> <span class="n">colors</span><span class="o">.</span><span class="n">red</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2096,6 +2273,58 @@ or divided by an integer value.</p>
 
 </dd></dl>
 
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.commands">
+<span class="sig-name descname"><span class="pre">commands</span></span><a class="headerlink" href="#godafoss.commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>The commands described below support godafoss development work.
+The commands assume you cloned the godafosss repository,
+and are in a command window (windows powershell or linux bash)
+at the root of the repository.</p>
+<dl class="simple">
+<dt>make/build</dt><dd><p>usage: make/build &lt;target&gt;
+Build a micro-python image with godafoss for &lt;target&gt;
+in the images directory.
+Requires: mpy</p>
+</dd>
+<dt>make/clean</dt><dd><p>usage: make/clean
+Removes __pycache__ files from the godafoss sources.
+Do this to save time when loading the sources to a target.</p>
+</dd>
+</dl>
+<p>make/gff
+make/glyph</p>
+<dl class="simple">
+<dt>make/html</dt><dd><p>usage: make/html
+Build the html documentation in the docs directory.
+Requires: sphynx</p>
+</dd>
+</dl>
+<p>make/json</p>
+<dl class="simple">
+<dt>make/lib</dt><dd><p>usage: make/lib
+Build the precompiled (.mpy) version of the library in lib/godafoss.</p>
+</dd>
+<dt>make/load</dt><dd><p>usage: make/load &lt;target&gt;
+Load the image from images directory into the target chip.
+Requires: mpy-load (esp32)</p>
+</dd>
+<dt>make/pdf:</dt><dd><p>under construction</p>
+</dd>
+<dt>make/pull</dt><dd><p>usage: make/pull</p>
+</dd>
+<dt>make/push</dt><dd><p>uage: make/push
+Push to git (message: “update”)</p>
+</dd>
+<dt>make/release</dt><dd><p>usage: make/release
+Prepare a release push: make/clean, make/html, make/lib, make/build
+for the supported targets.</p>
+</dd>
+<dt>make/test</dt><dd><p>usage: make test
+Run the (hosted) tests, test coberage, and style checks.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.dac">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dac</span></span><a class="headerlink" href="#godafoss.dac" title="Permalink to this definition">¶</a></dt>
@@ -2103,13 +2332,7 @@ or divided by an integer value.</p>
 <p>an analog output pin</p>
 <p>A write causes a dac to output the specified voltage.
 The value written is a fraction of the full scale output.</p>
-<p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># set the dac to output 0V</span>
-<span class="n">some_dac</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">fraction</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span> <span class="p">)</span> <span class="p">)</span>
-<span class="c1"># set the dac to output half of its maximum value</span>
-<span class="n">some_dac</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">fraction</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span> <span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
+<p>examples</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="godafoss.dac.inverted">
 <span class="sig-name descname"><span class="pre">inverted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.dac" title="godafoss.dac"><span class="pre">dac</span></a></span></span><a class="headerlink" href="#godafoss.dac.inverted" title="Permalink to this definition">¶</a></dt>
@@ -2124,13 +2347,6 @@ to the original dac</p>
 <p>This function returns a dac that outputs the negative
 (complement) of the written value to the original dac.</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># sets the dac to output the maximum</span>
-<span class="n">some_dac</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">fraction</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span> <span class="p">)</span> <span class="p">)</span>
-
-<span class="c1"># set the dac to output 90% half of its maximum value</span>
-<span class="p">(</span><span class="n">invert</span> <span class="o">@</span> <span class="n">some_dac</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">fraction</span><span class="p">(</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span> <span class="p">)</span> <span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <dl class="py method">
@@ -2310,14 +2526,131 @@ are ignored.</p>
 <dd></dd></dl>
 
 <HR><dl class="py function">
+<dt class="sig sig-object py" id="godafoss.dma_setup">
+<span class="sig-name descname"><span class="pre">dma_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buf_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.dma_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.edge">
 <span class="sig-name descname"><span class="pre">edge</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.edge" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.elapsed_us">
-<span class="sig-name descname"><span class="pre">elapsed_us</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.elapsed_us" title="Permalink to this definition">¶</a></dt>
-<dd><p>execute function f and return the elapsed time in microseconds</p>
+<span class="sig-name descname"><span class="pre">elapsed_us</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.elapsed_us" title="Permalink to this definition">¶</a></dt>
+<dd><p>time a function call</p>
+<p>This function calls the function f with the provided parameters
+and returns the elapsed time in microseconds</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.esp32">
+<span class="sig-name descname"><span class="pre">esp32</span></span><a class="headerlink" href="#godafoss.esp32" title="Permalink to this definition">¶</a></dt>
+<dd><p>&lt;image&gt;
+xxxx
+wiki <a class="reference external" href="https://en.wikipedia.org/wiki/ESP32">https://en.wikipedia.org/wiki/ESP32</a></p>
+<p>+————————+—————————- —-+
+| CPU                    | Tensilica Xtensa LX6 (1 or 2)   |
++————————+———————————+
+| Clock frequency`       | 160 or 240 MHz                  |
++————————+———————————+
+| RAM`                   | 520 Kb                          |
++————————+———————————+
+| FLASH`                 | external                        |
++————————+———————————+
+| WiFi                   | yes                             |
++————————+———————————+
+| USB                    | none                            |
++————————+———————————+
+| MicroPython free RAM`  | xxx Kb                          |
++————————+———————————+
+| MicroPython free FLASH | depends on external flash chip  |
++————————+———————————+</p>
+<p>The esp32 is the more powerfull successor to the esp8266.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.esp32c">
+<span class="sig-name descname"><span class="pre">esp32c</span></span><a class="headerlink" href="#godafoss.esp32c" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils align-default">
+<colgroup>
+<col style="width: 57%" />
+<col style="width: 43%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>2 x Cortex-M0</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock frequency`</p></td>
+<td><p>166 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM`</p></td>
+<td><p>254 Kb</p></td>
+</tr>
+<tr class="row-even"><td><p>FLASH`</p></td>
+<td><p>external</p></td>
+</tr>
+<tr class="row-odd"><td><p>MicroPython free RAM`</p></td>
+<td><p>166 Kb</p></td>
+</tr>
+<tr class="row-even"><td><p>MicroPython free FLASH</p></td>
+<td><p>120 Kb</p></td>
+</tr>
+</tbody>
+</table>
+<p>The rp2040 is the first and so far only micro-controller produced by</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.esp8266">
+<span class="sig-name descname"><span class="pre">esp8266</span></span><a class="headerlink" href="#godafoss.esp8266" title="Permalink to this definition">¶</a></dt>
+<dd><p>&lt;image&gt;
+Wemos D1 esp8266 module with serial interface
+wiki <a class="reference external" href="https://en.wikipedia.org/wiki/ESP8266">https://en.wikipedia.org/wiki/ESP8266</a></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 58%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>Tenscilica L 106</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock frequency`</p></td>
+<td><p>60 or 180 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM`</p></td>
+<td><p>160 Kb</p></td>
+</tr>
+<tr class="row-even"><td><p>FLASH`</p></td>
+<td><p>external</p></td>
+</tr>
+<tr class="row-odd"><td><p>WiFi</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>USB</p></td>
+<td><p>none</p></td>
+</tr>
+<tr class="row-odd"><td><p>MicroPython free RAM`</p></td>
+<td><p>xxx Kb</p></td>
+</tr>
+<tr class="row-even"><td><p>MicroPython free FLASH</p></td>
+<td><p>depends on external flash chip</p></td>
+</tr>
+</tbody>
+</table>
+<p>The esp8266 was the first micro-controller with builkt-in WiFi that
+was both cheap and easily available.
+It can be found in a wide variety of modules and PCBs, and in low-cost
+WiFi connected consumer products like intelligent light bulbs.</p>
+<p>The chip has no on-chip flash memory:
+it is used with an external serial flash chip.
+The esp8285 is a close equivalent with 1 MB flash memory on the chip.</p>
+<p>For new projects, the esp32 should ve preferred.</p>
+<p>The esp8266 can be used with the library, but it is slow.
+The amount if RAM is far too low to use the library in source form.
+With the library included in the image, simple applications
+can be run, but the start-up time can be 10s of seconds.</p>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -2392,21 +2725,16 @@ and maximum).</p>
 <p>The inverse of a fraction inverse is the complement of its value.</p>
 <p>A fraction can be converted to a string representation.</p>
 <p>Values (objects) of this class are immutable.</p>
-<p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">py</span><span class="p">:</span><span class="n">method</span><span class="p">::</span> <span class="n">fraction</span><span class="o">.</span><span class="n">inverted</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="o">~</span><span class="n">godafoss</span><span class="o">.</span><span class="n">fraction</span>
-</pre></div>
-</div>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">module</dt>
-<dd class="field-odd"><p>godafoss</p>
-</dd>
-</dl>
-<p>complement of the fraction</p>
+<p>examples</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.fraction.inverted">
+<span class="sig-name descname"><span class="pre">inverted</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.fraction" title="godafoss.fraction"><span class="pre">fraction</span></a></span></span><a class="headerlink" href="#godafoss.fraction.inverted" title="Permalink to this definition">¶</a></dt>
+<dd><p>complement of the fraction</p>
 <p>The inverted (negative) of a fraction is its complement.
 For instance, the complement of 3-out-of-10 is 7-out-of-10.</p>
-<p>examples:</p>
-</div></blockquote>
+<p>examples</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="godafoss.fraction.scaled">
 <span class="sig-name descname"><span class="pre">scaled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">minimum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span></span><a class="headerlink" href="#godafoss.fraction.scaled" title="Permalink to this definition">¶</a></dt>
@@ -2430,7 +2758,7 @@ scaled to the interval [minimum…maximum]</p>
 interval, which is specified by the minimum and maximum parameters.
 When those parameters are integers, the result will be an integer.
 When one or both are floats, the result is a float.</p>
-<p>examples:</p>
+<p>examples</p>
 </dd></dl>
 
 </dd></dl>
@@ -2979,19 +3307,7 @@ original adc.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="godafoss.gpio_adc.read">
 <span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.gpio_adc.read" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>the adc value as a fraction</p>
-</div></blockquote>
-<dl class="simple">
-<dt>#=&gt;</dt><dd><dl class="field-list simple">
-<dt class="field-odd">result</dt>
-<dd class="field-odd"><p><a class="reference internal" href="#godafoss.fraction" title="godafoss.fraction"><code class="xref py py-class docutils literal notranslate"><span class="pre">fraction</span></code></a>
-adc value as a fraction of the full scale</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -3180,12 +3496,6 @@ using ‘n’ to go to a next line
 <dt class="sig sig-object py" id="godafoss.hd44780.demo">
 <span class="sig-name descname"><span class="pre">demo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.hd44780.demo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.hd44780.init">
-<span class="sig-name descname"><span class="pre">init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.hd44780.init" title="Permalink to this definition">¶</a></dt>
-<dd><p>initialize the hd44780 chip to 4-bit mode</p>
-</dd></dl>
 
 </dd></dl>
 
@@ -3477,7 +3787,7 @@ be possible:</p>
 <p>To prevent such modifications, a value class inherits from freeze,
 and calls immutable._init__( self ) when all its members
 have been initialized.</p>
-<p>usage example:</p>
+<p>usage example</p>
 </dd></dl>
 
 <HR><dl class="py function">
@@ -3504,7 +3814,7 @@ the first byte as least significant byte of the int value.</p>
 <p>Python has the int.from_bytes function, but it is currently
 not implemented fully and correctly in MicroPython.
 Hence this alternative.</p>
-<p>examples:</p>
+<p>examples</p>
 </dd></dl>
 
 <HR><dl class="py function">
@@ -3734,9 +4044,9 @@ This parameter is the offset of the first displayed pixel
 <span class="sig-name descname"><span class="pre">make_fsm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.lcd.make_fsm" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py" id="godafoss.lcd.pio_put">
-<span class="sig-name descname"><span class="pre">pio_put</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.lcd.pio_put" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pio_put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.lcd.pio_put" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -3874,9 +4184,9 @@ This parameter is the offset of the first displayed pixel
 <span class="sig-name descname"><span class="pre">make_fsm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.lcd_base.make_fsm" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="py attribute">
+<dl class="py method">
 <dt class="sig sig-object py" id="godafoss.lcd_base.pio_put">
-<span class="sig-name descname"><span class="pre">pio_put</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.lcd_base.pio_put" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pio_put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.lcd_base.pio_put" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -4160,6 +4470,27 @@ The data must be acceptabel for a bytes() call.</p>
 <dd></dd></dl>
 
 <HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.life">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#godafoss.xy" title="godafoss.xy"><span class="pre">xy</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">wraparound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.life" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<ul class="simple">
+<li><p>life itself is a canvas</p></li>
+<li><p>you can clear it and write to it</p></li>
+<li><p>you can write it to another canvas</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.life.generation">
+<span class="sig-name descname"><span class="pre">generation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.life.generation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.life.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s:</span> <span class="pre">sheet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset:</span> <span class="pre">~godafoss.xy</span> <span class="pre">=</span> <span class="pre">(0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ink:</span> <span class="pre">[&lt;class</span> <span class="pre">'bool'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">&lt;class</span> <span class="pre">'godafoss.color'&gt;]</span> <span class="pre">=</span> <span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.life.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.line">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">span</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#godafoss.xy" title="godafoss.xy"><span class="pre">xy</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.line" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#godafoss.shape" title="godafoss.shape"><code class="xref py py-class docutils literal notranslate"><span class="pre">shape</span></code></a></p>
@@ -4329,12 +4660,6 @@ a tuple constructed from the *args</p>
 this function returns it as a tuple.
 Otherwise, it returns a tuple of its argument(s).</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make_tuple</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
-<span class="n">make_tuple</span><span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">),</span> <span class="mi">3</span> <span class="p">)</span>
-<span class="n">make_tuple</span><span class="p">(</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span>
-<span class="n">make_tuple</span><span class="p">(</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">]</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">)</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -4419,132 +4744,8 @@ The higher bits in the returned value are 0 (clear).</p>
 
 <HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.mrfc522">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mrfc522</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">spi,</span> <span class="pre">cs:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_in_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_oc'&gt;],</span> <span class="pre">rst:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_in_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_oc'&gt;]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mrfc522</span></span><a class="headerlink" href="#godafoss.mrfc522" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Hello</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.antenna_on">
-<span class="sig-name descname"><span class="pre">antenna_on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.antenna_on" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.anticoll">
-<span class="sig-name descname"><span class="pre">anticoll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.anticoll" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.auth">
-<span class="sig-name descname"><span class="pre">auth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.auth" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<HR><dl class="py class">
-<dt class="sig sig-object py" id="godafoss.mrfc522.cmd">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cmd</span></span><a class="headerlink" href="#godafoss.mrfc522.cmd" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.cmd.AUTHENT1A">
-<span class="sig-name descname"><span class="pre">AUTHENT1A</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">96</span></em><a class="headerlink" href="#godafoss.mrfc522.cmd.AUTHENT1A" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.cmd.AUTHENT1B">
-<span class="sig-name descname"><span class="pre">AUTHENT1B</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">97</span></em><a class="headerlink" href="#godafoss.mrfc522.cmd.AUTHENT1B" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.cmd.REQALL">
-<span class="sig-name descname"><span class="pre">REQALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">82</span></em><a class="headerlink" href="#godafoss.mrfc522.cmd.REQALL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.cmd.REQIDL">
-<span class="sig-name descname"><span class="pre">REQIDL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">38</span></em><a class="headerlink" href="#godafoss.mrfc522.cmd.REQIDL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.demo">
-<span class="sig-name descname"><span class="pre">demo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.demo" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.read_uid">
-<span class="sig-name descname"><span class="pre">read_uid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.read_uid" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.register_read">
-<span class="sig-name descname"><span class="pre">register_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.register_read" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.register_write">
-<span class="sig-name descname"><span class="pre">register_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.register_write" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.request">
-<span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.request" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.reset" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.select_tag">
-<span class="sig-name descname"><span class="pre">select_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.select_tag" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<HR><dl class="py class">
-<dt class="sig sig-object py" id="godafoss.mrfc522.status">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#godafoss.mrfc522.status" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.status.ERR">
-<span class="sig-name descname"><span class="pre">ERR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#godafoss.mrfc522.status.ERR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.status.NOTAGERR">
-<span class="sig-name descname"><span class="pre">NOTAGERR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#godafoss.mrfc522.status.NOTAGERR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="godafoss.mrfc522.status.OK">
-<span class="sig-name descname"><span class="pre">OK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#godafoss.mrfc522.status.OK" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.stop_crypto1">
-<span class="sig-name descname"><span class="pre">stop_crypto1</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.stop_crypto1" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="godafoss.mrfc522.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">addr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.mrfc522.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>hello</p>
-</dd></dl>
-
 </dd></dl>
 
 <HR><dl class="py class">
@@ -4646,6 +4847,17 @@ is required, and power + ground ‘bypass’ wiring might be needed.</p>
 <span class="sig-name descname"><span class="pre">demo_color_wheel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">((255,</span> <span class="pre">0,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">255,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">255),</span> <span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255))</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delay</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.neopixels.demo_color_wheel" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+</dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.no_new_attributes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">no_new_attributes</span></span><a class="headerlink" href="#godafoss.no_new_attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>make it impossible to add new attributes</p>
+<p>In an object that inherits from this class can (after the
+no_new_attributes.__init__() call) no new attributes can be created.
+This can be usefull to prevent accidentally setting an
+attributeb that is spelled wrong.</p>
 </dd></dl>
 
 <HR><dl class="py function">
@@ -4767,6 +4979,12 @@ the use of hwlib::port_out_invert().</p>
 <dd><p>read buffer from chip</p>
 </dd></dl>
 
+</dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.pcf8591">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pcf8591</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.pcf8591" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">_pcf8574x</span></code></p>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -5097,6 +5315,9 @@ the number of iterations, or None for infinite iterationfs</p>
 </dl>
 <p>This iterator is usefull for iterative demos that by default
 must run forever, but might be used to run a fixed numer of times.</p>
+<p>The first iterator value is 0, the next is 1.
+When a number of iterations is specified, the value increments,
+otherwise it remains 1.</p>
 <p>examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">repeater</span><span class="p">(</span> <span class="mi">10</span> <span class="p">):</span> <span class="o">...</span>  <span class="c1"># ... is repeated 10 times</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">repeater</span><span class="p">(</span> <span class="kc">None</span> <span class="p">):</span> <span class="o">...</span>  <span class="c1"># ... is repeated forever</span>
@@ -5105,11 +5326,71 @@ must run forever, but might be used to run a fixed numer of times.</p>
 </dd></dl>
 
 <HR><dl class="py function">
-<dt class="sig sig-object py" id="godafoss.report">
-<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.report" title="Permalink to this definition">¶</a></dt>
-<dd><p>decorator for benchmarking</p>
-<p>This function decorator will report the time spent (in microseconds)
-and memory claimed (in bytes) each time the decorated function runs.</p>
+<dt class="sig sig-object py" id="godafoss.report_memory_and_time">
+<span class="sig-name descname"><span class="pre">report_memory_and_time</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.report_memory_and_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>report memory and time used since godafoss loading started</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.rp2040">
+<span class="sig-name descname"><span class="pre">rp2040</span></span><a class="headerlink" href="#godafoss.rp2040" title="Permalink to this definition">¶</a></dt>
+<dd><p>&lt;picture&gt;
+Raspberry Pico: the first PCB module with an rp2040
+wiki <a class="reference external" href="https://en.wikipedia.org/wiki/RP2040">https://en.wikipedia.org/wiki/RP2040</a></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 53%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CPU</p></td>
+<td><p>2 x Cortex-M0+</p></td>
+</tr>
+<tr class="row-even"><td><p>Clock frequency`</p></td>
+<td><p>133 MHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM`</p></td>
+<td><p>264 Kb</p></td>
+</tr>
+<tr class="row-even"><td><p>FLASH`</p></td>
+<td><p>external</p></td>
+</tr>
+<tr class="row-odd"><td><p>WiFi</p></td>
+<td><p>no (external on Pico W)</p></td>
+</tr>
+<tr class="row-even"><td><p>USB</p></td>
+<td><p>1.1 host &amp; device, DFU</p></td>
+</tr>
+<tr class="row-odd"><td><p>MicroPython 1.22.2 free RAM`</p></td>
+<td><p>227 Kb
+(185 Kb on Pico W)</p></td>
+</tr>
+<tr class="row-even"><td><p>MicroPython 1.22.2 free FLASH</p></td>
+<td><p>depends on external flash chip
+(1.4 Mb on Pico,
+840 Kb on Pico W)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The rp2040 is the first and so far only micro-controller produced by
+the Raspberry foundation.
+The chip has no on-chip flash memory:
+it is used with an external serial flash chip.</p>
+<p>The rp2040 supports Device Firmware Update over USB: powering the
+chip with a certain pin pulled low puts has the
+chip present itself as a mass storage device,
+to which a firmware file can simply be copied using the explorer.
+Thonny uses this to provide an option to directly load a
+micro-python image from the web to a connected rp2040 chip.</p>
+<p>The rp2040 has, beside a normal set of hardware peripherals,
+8 PIO state machines, which are very primitive but suprisingly
+useable co-processors. These can be used to implement various
+traditional (SPI, I2C) less traditional (one-wire, neopixel,
+LCD) hardware peripherals. The library implements a few:
+xxxx</p>
+<p>The rp2040 is available as various PCB modules.
+The Raspberry Pico W adds WiFi, which is supported by
+its specific micro-python version.</p>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -5196,6 +5477,13 @@ an offset to where the shape is written.</p>
 <dt class="sig sig-object py" id="godafoss.sign">
 <span class="sig-name descname"><span class="pre">sign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sign" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<HR><dl class="py function">
+<dt class="sig sig-object py" id="godafoss.sleep">
+<span class="sig-name descname"><span class="pre">sleep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seconds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sleep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delay execution for a given number of seconds.  The argument may be
+a floating point number for subsecond precision.</p>
+</dd></dl>
 
 <HR><dl class="py function">
 <dt class="sig sig-object py" id="godafoss.sleep_us">
@@ -6297,6 +6585,389 @@ and a comprehensive demo.</p>
 
 </dd></dl>
 
+<HR><dl class="py function">
+<dt class="sig sig-object py" id="godafoss.store_arguments">
+<span class="sig-name descname"><span class="pre">store_arguments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.store_arguments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.sx127x">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sx127x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">spi:</span> <span class="pre">~machine.SPI,</span> <span class="pre">data_command:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_in_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_oc'&gt;],</span> <span class="pre">chip_select:</span> <span class="pre">[&lt;class</span> <span class="pre">'int'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_in_out'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'godafoss.pin_oc'&gt;],</span> <span class="pre">configuration:</span> <span class="pre">~godafoss.sx127x_configuration</span> <span class="pre">=</span> <span class="pre">&lt;godafoss.sx127x_configuration</span> <span class="pre">object&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>sx127x chip driver</p>
+<p>This is a driver for the LoRa mode of the Semtech sx127x
+(sx1272, sx1276, sx1277, sx1278, sx1279) series of chips.
+The FSK/OOK mode of these chips is not supported.</p>
+<p>Some of these chips support a smaller range of settings than others.
+It is up to the user to check that each setting is valid
+for the chip that is used.
+The driver methods write each setting without checking for a
+specific chip.</p>
+<p>The driver supports raw LoRa, not LoRaWAN.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.auto_agc">
+<span class="sig-name descname"><span class="pre">auto_agc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auto</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.auto_agc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.bandwidth">
+<span class="sig-name descname"><span class="pre">bandwidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.bandwidth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.coding_rate">
+<span class="sig-name descname"><span class="pre">coding_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.coding_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.config">
+<span class="sig-name descname"><span class="pre">config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">configuration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#godafoss.sx127x_configuration" title="godafoss.sx127x_configuration"><span class="pre">sx127x_configuration</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.crc">
+<span class="sig-name descname"><span class="pre">crc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.crc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.frequency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.handle_on_receive">
+<span class="sig-name descname"><span class="pre">handle_on_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.handle_on_receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.header">
+<span class="sig-name descname"><span class="pre">header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">implicit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.header" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.irq_flags">
+<span class="sig-name descname"><span class="pre">irq_flags</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#godafoss.sx127x.irq_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.low_data_rate">
+<span class="sig-name descname"><span class="pre">low_data_rate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ldr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.low_data_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.mode_receive_continuous">
+<span class="sig-name descname"><span class="pre">mode_receive_continuous</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.mode_receive_continuous" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.mode_receive_single">
+<span class="sig-name descname"><span class="pre">mode_receive_single</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.mode_receive_single" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.mode_sleep">
+<span class="sig-name descname"><span class="pre">mode_sleep</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.mode_sleep" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.mode_standby">
+<span class="sig-name descname"><span class="pre">mode_standby</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.mode_standby" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.mode_transmit">
+<span class="sig-name descname"><span class="pre">mode_transmit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.mode_transmit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.on_receive">
+<span class="sig-name descname"><span class="pre">on_receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.on_receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.packet_rssi">
+<span class="sig-name descname"><span class="pre">packet_rssi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#godafoss.sx127x.packet_rssi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.packet_snr">
+<span class="sig-name descname"><span class="pre">packet_snr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#godafoss.sx127x.packet_snr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.preamble_length">
+<span class="sig-name descname"><span class="pre">preamble_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.preamble_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.receive">
+<span class="sig-name descname"><span class="pre">receive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.receive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.received_packet">
+<span class="sig-name descname"><span class="pre">received_packet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x.received_packet" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.register_read">
+<span class="sig-name descname"><span class="pre">register_read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#godafoss.sx127x.register_read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.register_write">
+<span class="sig-name descname"><span class="pre">register_write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.register_write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">registers</span></span><a class="headerlink" href="#godafoss.sx127x.registers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.detection_optimize">
+<span class="sig-name descname"><span class="pre">detection_optimize</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.detection_optimize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.detection_threshold">
+<span class="sig-name descname"><span class="pre">detection_threshold</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.detection_threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.dio_mapping_1">
+<span class="sig-name descname"><span class="pre">dio_mapping_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.dio_mapping_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.fifo">
+<span class="sig-name descname"><span class="pre">fifo</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.fifo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.fifo_addr_ptr">
+<span class="sig-name descname"><span class="pre">fifo_addr_ptr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.fifo_addr_ptr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.fifo_rx_base_addr">
+<span class="sig-name descname"><span class="pre">fifo_rx_base_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.fifo_rx_base_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.fifo_rx_current_addr">
+<span class="sig-name descname"><span class="pre">fifo_rx_current_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.fifo_rx_current_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.fifo_tx_base_addr">
+<span class="sig-name descname"><span class="pre">fifo_tx_base_addr</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.fifo_tx_base_addr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.freq_error_lsb">
+<span class="sig-name descname"><span class="pre">freq_error_lsb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.freq_error_lsb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.freq_error_mid">
+<span class="sig-name descname"><span class="pre">freq_error_mid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.freq_error_mid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.freq_error_msb">
+<span class="sig-name descname"><span class="pre">freq_error_msb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.freq_error_msb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.frf_lsb">
+<span class="sig-name descname"><span class="pre">frf_lsb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.frf_lsb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.frf_mid">
+<span class="sig-name descname"><span class="pre">frf_mid</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.frf_mid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.frf_msb">
+<span class="sig-name descname"><span class="pre">frf_msb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.frf_msb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.invertiq">
+<span class="sig-name descname"><span class="pre">invertiq</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.invertiq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.invertiq2">
+<span class="sig-name descname"><span class="pre">invertiq2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.invertiq2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.irq_flags">
+<span class="sig-name descname"><span class="pre">irq_flags</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.irq_flags" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.lna">
+<span class="sig-name descname"><span class="pre">lna</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.lna" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.modem_config_1">
+<span class="sig-name descname"><span class="pre">modem_config_1</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.modem_config_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.modem_config_2">
+<span class="sig-name descname"><span class="pre">modem_config_2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.modem_config_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.modem_config_3">
+<span class="sig-name descname"><span class="pre">modem_config_3</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.modem_config_3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.ocp">
+<span class="sig-name descname"><span class="pre">ocp</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.ocp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.op_mode">
+<span class="sig-name descname"><span class="pre">op_mode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.op_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.pa_config">
+<span class="sig-name descname"><span class="pre">pa_config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.pa_config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.pa_dac">
+<span class="sig-name descname"><span class="pre">pa_dac</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.pa_dac" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.payload_length">
+<span class="sig-name descname"><span class="pre">payload_length</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.payload_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.pkt_rssi_value">
+<span class="sig-name descname"><span class="pre">pkt_rssi_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.pkt_rssi_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.pkt_snr_value">
+<span class="sig-name descname"><span class="pre">pkt_snr_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.pkt_snr_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.preamble_lsb">
+<span class="sig-name descname"><span class="pre">preamble_lsb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.preamble_lsb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.preamble_msb">
+<span class="sig-name descname"><span class="pre">preamble_msb</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.preamble_msb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.rssi_value">
+<span class="sig-name descname"><span class="pre">rssi_value</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.rssi_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.rssi_wideband">
+<span class="sig-name descname"><span class="pre">rssi_wideband</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.rssi_wideband" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.rx_nb_bytes">
+<span class="sig-name descname"><span class="pre">rx_nb_bytes</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.rx_nb_bytes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.sync_word">
+<span class="sig-name descname"><span class="pre">sync_word</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.sync_word" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="godafoss.sx127x.registers.version">
+<span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#godafoss.sx127x.registers.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.rx_boost">
+<span class="sig-name descname"><span class="pre">rx_boost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.rx_boost" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.rx_gain">
+<span class="sig-name descname"><span class="pre">rx_gain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gain</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.rx_gain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.spreading_factor">
+<span class="sig-name descname"><span class="pre">spreading_factor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sf</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.spreading_factor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.sync_word">
+<span class="sig-name descname"><span class="pre">sync_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.sync_word" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.transmit">
+<span class="sig-name descname"><span class="pre">transmit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.transmit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.transmitting">
+<span class="sig-name descname"><span class="pre">transmitting</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#godafoss.sx127x.transmitting" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.tx_power">
+<span class="sig-name descname"><span class="pre">tx_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#godafoss.sx127x.tx_power" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.sx127x.version">
+<span class="sig-name descname"><span class="pre">version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#godafoss.sx127x.version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<HR><dl class="py class">
+<dt class="sig sig-object py" id="godafoss.sx127x_configuration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sx127x_configuration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">868000000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_power</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">125000.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spreading_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coding_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preamble_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">implicit_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_word</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">18</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_crc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_gain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_boost</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_agc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tx_fifo_base_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rx_fifo_base_address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.sx127x_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>configuration of an sx127x LoRa Chip</p>
+<p>An object of this class holds the configuration parameters used
+to initialize or (re)configure an sx127x chip driver.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="godafoss.targets">
+<span class="sig-name descname"><span class="pre">targets</span></span><a class="headerlink" href="#godafoss.targets" title="Permalink to this definition">¶</a></dt>
+<dd><p>The library can be used on all MicroPython ports.
+The table below shows the target chips and boards
+on which I tested the library, and their key features.
+Most targets have a dedicated description.</p>
+<p>import gc; gc.collect(); gc.mem_free()</p>
+<p>CPU
+Clock
+RAM
+FLASH
+MicroPython free RAM
+MicroPython free FLASH
+Notes</p>
+</dd></dl>
+
 <HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.tcs3472">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tcs3472</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bus</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">41</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#godafoss.tcs3472" title="Permalink to this definition">¶</a></dt>
@@ -6335,44 +7006,32 @@ the scale (temperature.scale.Celcius, temperature.scale.Farenheit
 or temperature.scale.Kelvin) must be specified.</p>
 <p>Values (objects) of this class are immutable.</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">k0</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Kelvin</span> <span class="p">)</span>
-<span class="n">k0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Kelvin</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">0</span>
-<span class="n">k0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Celcius</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="o">-</span><span class="mf">273.15</span>
-<span class="nb">str</span><span class="p">(</span> <span class="n">k0</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;0.0K&quot;</span>
-
-<span class="n">c0</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">(</span> <span class="mi">0</span><span class="p">,</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Celcius</span> <span class="p">)</span>
-<span class="n">c0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Kelvin</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mf">273.15</span>
-<span class="n">c0</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Celcius</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mi">0</span>
-<span class="nb">str</span><span class="p">(</span> <span class="n">c0</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;0.0C&quot;</span>
-
-<span class="n">f32</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">(</span> <span class="mi">32</span><span class="p">,</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Farenheit</span> <span class="p">)</span>
-<span class="n">f32</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Celcius</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mf">0.00</span>
-<span class="nb">str</span><span class="p">(</span> <span class="n">f32</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;32.0F&quot;</span>
-<span class="n">f212</span> <span class="o">=</span> <span class="n">temperature</span><span class="p">(</span> <span class="mi">212</span><span class="p">,</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Farenheit</span> <span class="p">)</span>
-<span class="n">f212</span><span class="o">.</span><span class="n">value</span><span class="p">(</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="o">.</span><span class="n">Celcius</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="mf">100.00</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">py</span><span class="p">:</span><span class="n">class</span><span class="p">::</span> <span class="n">temperature</span><span class="o">.</span><span class="n">scale</span><span class="p">()</span>
 </pre></div>
 </div>
-<HR><dl class="py class">
-<dt class="sig sig-object py" id="godafoss.temperature.scale">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#godafoss.temperature.scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">module</dt>
+<dd class="field-odd"><p>godafoss</p>
+</dd>
+</dl>
+<p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="godafoss.temperature.scale.celcius">
-<span class="sig-name descname"><span class="pre">celcius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'C'</span></em><a class="headerlink" href="#godafoss.temperature.scale.celcius" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scale.</span></span><span class="sig-name descname"><span class="pre">celcius</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'C'</span></em><a class="headerlink" href="#godafoss.temperature.scale.celcius" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="godafoss.temperature.scale.farenheit">
-<span class="sig-name descname"><span class="pre">farenheit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'F'</span></em><a class="headerlink" href="#godafoss.temperature.scale.farenheit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scale.</span></span><span class="sig-name descname"><span class="pre">farenheit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'F'</span></em><a class="headerlink" href="#godafoss.temperature.scale.farenheit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="godafoss.temperature.scale.kelvin">
-<span class="sig-name descname"><span class="pre">kelvin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'K'</span></em><a class="headerlink" href="#godafoss.temperature.scale.kelvin" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">scale.</span></span><span class="sig-name descname"><span class="pre">kelvin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'K'</span></em><a class="headerlink" href="#godafoss.temperature.scale.kelvin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</dd></dl>
-
+</div></blockquote>
 <dl class="py method">
 <dt class="sig sig-object py" id="godafoss.temperature.value">
 <span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">chr</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#godafoss.temperature.value" title="Permalink to this definition">¶</a></dt>
@@ -6501,6 +7160,11 @@ the character to be written</p>
 <dd></dd></dl>
 
 </dd></dl>
+
+<HR><dl class="py function">
+<dt class="sig sig-object py" id="godafoss.time_us">
+<span class="sig-name descname"><span class="pre">time_us</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#godafoss.time_us" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <HR><dl class="py class">
 <dt class="sig sig-object py" id="godafoss.tm1637">
@@ -6766,11 +7430,6 @@ The low and high values are included in the allowed range.</p>
 <p>Low and high must be in order: low =&lt; high.
 If they are not the function will return False.</p>
 <p>examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">within</span><span class="p">(</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">True</span>
-<span class="n">within</span><span class="p">(</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">True</span>
-<span class="n">within</span><span class="p">(</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">15</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">False</span>
-</pre></div>
-</div>
 </dd></dl>
 
 <HR><dl class="py class">
@@ -6939,7 +7598,17 @@ as attributes.</p>
 multiplication (by an integer), integer division (by an integer),
 and taking the string representation.</p>
 <p>Values (objects) of this class are immutable.</p>
-<p>examples:</p>
+<p>examples</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.xy.around">
+<span class="sig-name descname"><span class="pre">around</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.xy" title="godafoss.xy"><span class="pre">xy</span></a></span></span><a class="headerlink" href="#godafoss.xy.around" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="godafoss.xy.within">
+<span class="sig-name descname"><span class="pre">within</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#godafoss.xy" title="godafoss.xy"><span class="pre">xy</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#godafoss.xy" title="godafoss.xy"><span class="pre">xy</span></a></span></span><a class="headerlink" href="#godafoss.xy.within" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <HR><dl class="py class">
@@ -6968,7 +7637,7 @@ as attributes.</p>
 multiplication (by an integer or float), true division and floor division
 (by an integer or float), and taking the string representation.</p>
 <p>Values (objects) of this class are immutable.</p>
-<p>examples:</p>
+<p>examples</p>
 </dd></dl>
 
 <div class="toctree-wrapper compound">
